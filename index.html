@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+<meta charset="UTF-8">
+<title>DNS Code Generator</title>
+
+<style>
+body{
+font-family:tahoma;
+background:#0f172a;
+color:white;
+text-align:center;
+padding:40px;
+}
+
+.container{
+background:#1e293b;
+padding:30px;
+border-radius:10px;
+max-width:500px;
+margin:auto;
+}
+
+input{
+width:90%;
+padding:10px;
+margin:10px;
+border-radius:6px;
+border:none;
+}
+
+button{
+padding:12px 20px;
+background:#22c55e;
+border:none;
+border-radius:6px;
+color:white;
+font-size:16px;
+cursor:pointer;
+}
+
+#result{
+margin-top:20px;
+background:#020617;
+padding:15px;
+border-radius:8px;
+white-space:pre-wrap;
+text-align:left;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h2>تولید DNS IPv4 Super Code</h2>
+
+<input type="number" id="count" placeholder="چند کد میخواهی؟">
+
+<input type="number" id="volume" placeholder="حجم (گیگ)">
+
+<input type="number" id="days" placeholder="مدت اعتبار (روز)">
+
+<br>
+
+<button onclick="generateDNS()">ساخت کد</button>
+
+<div id="result"></div>
+
+</div>
+
+<script>
+
+function randomIP(){
+return Math.floor(Math.random()*255)+"."+
+Math.floor(Math.random()*255)+"."+
+Math.floor(Math.random()*255)+"."+
+Math.floor(Math.random()*255);
+}
+
+function randomCode(){
+return Math.random().toString(36).substring(2,10).toUpperCase();
+}
+
+function generateDNS(){
+
+let count=document.getElementById("count").value;
+let volume=document.getElementById("volume").value;
+let days=document.getElementById("days").value;
+
+let output="";
+
+for(let i=0;i<count;i++){
+
+let dns=randomIP();
+let code=randomCode();
+
+output+=
+"DNS: "+dns+
+" | CODE: "+code+
+" | "+volume+"GB"+
+" | "+days+"Days\n";
+
+}
+
+document.getElementById("result").innerText=output;
+
+}
+
+</script>
+
+</body>
+</html>
